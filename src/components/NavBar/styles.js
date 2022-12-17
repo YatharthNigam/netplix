@@ -1,5 +1,7 @@
 import { makeStyles } from '@mui/styles';
 
+const drawerWidth = 240;
+
 // theme contains all the margins and lot of measurements.
 export default makeStyles((theme) => ({
   toolbar: {
@@ -17,6 +19,21 @@ export default makeStyles((theme) => ({
     // only show if screen greater than up. i.e. not mobile
     [theme.breakpoints.up('sm')]: {
       display: 'none',
+    },
+  },
+  drawer: {
+    [theme.breakpoints.up('sm')]: {
+      width: drawerWidth,
+      flexShrink: 0,
+    },
+  },
+  drawerPaper: {
+    width: drawerWidth,
+  },
+  linkButton: {
+    '&:hover': {
+      color: 'while !important',
+      textDecoration: 'none',
     },
   },
 }));

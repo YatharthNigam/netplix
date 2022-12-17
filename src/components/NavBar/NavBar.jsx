@@ -28,7 +28,7 @@ function NavBar() {
               color="inherit"
               edge="start"
               style={{ outline: 'none' }}
-              onClick={() => {}}
+              onClick={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               className={classes.menuButton}
             >
               <Menu />
@@ -72,20 +72,22 @@ function NavBar() {
       {/* Creating sidebar */}
       <div>
         <nav className={classes.drawer}>
+          {/* If on mobile, We'll have to show a MUI Drawer */}
           {isMobile ? (
             <Drawer
               variant="temporary"
               anchor="right"
               open={mobileOpen}
-              className={classes.drawerBackground}
+              onClose={() => setMobileOpen((prevMobileOpen) => !prevMobileOpen)}
               classes={{ paper: classes.drawerPaper }}
               ModalProps={{ keepMounted: true }}
             >
+              {/* Technique to apply classes to override the default style of components, the comp is made of */}
               <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           ) : (
-            <Drawer>
-              a
+            <Drawer classes={{ paper: classes.drawerPaper }} variant="permanent" open>
+              <Sidebar setMobileOpen={setMobileOpen} />
             </Drawer>
           )}
         </nav>
