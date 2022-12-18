@@ -38,9 +38,9 @@ function Sidebar() {
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
             <ListItem onClick={() => {}}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img src={redLogo} className={classes.genreImages} height={30} />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText primary={label} />
             </ListItem>
           </Link>
@@ -52,9 +52,9 @@ function Sidebar() {
         {demoCategories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
             <ListItem onClick={() => {}}>
-              <ListItemIcon>
+              {/* <ListItemIcon>
                 <img src={redLogo} className={classes.genreImages} height={30} />
-              </ListItemIcon>
+              </ListItemIcon> */}
               <ListItemText primary={label} />
             </ListItem>
           </Link>
