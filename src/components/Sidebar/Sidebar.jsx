@@ -2,18 +2,17 @@ import React, { useEffect } from 'react';
 import { Divider, List, ListItem, ListItemText, ListSubheader, ListItemIcon, Box, CircularProgress } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { useTheme } from '@mui/styles';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import { useGetGenresQuery } from '../../services/TMDB';
 import useStyles from './styles';
+import genreIcons from '../../assets/genres';
 
 const categories = [
   { label: 'Popular', value: 'popular' },
   { label: 'Top rated', value: 'top_rated' },
   { label: 'Upcoming', value: 'upcoming' },
-];
-const demoCategories = [
-  { label: 'Comedy', value: 'comedy' },
-  { label: 'Action', value: 'action' },
-  { label: 'Horror', value: 'horror' },
-  { label: 'Animation', value: 'animation' },
 ];
 
 const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
@@ -22,6 +21,11 @@ const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48
 function Sidebar() {
   const theme = useTheme();
   const classes = useStyles();
+  const { data, isFetching } = useGetGenresQuery();
+  // use for sending data from component to redux store
+  const dispatch = useDispatch();
+
+  console.log(data);
 
   return (
     <>
@@ -37,10 +41,10 @@ function Sidebar() {
         <ListSubheader>Categories</ListSubheader>
         {categories.map(({ label, value }) => (
           <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}}>
-              {/* <ListItemIcon>
-                <img src={redLogo} className={classes.genreImages} height={30} />
-              </ListItemIcon> */}
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(value))}>
+              <ListItemIcon>
+                <img src={genreIcons[label.toLowerCase()]} className={classes.genreImages} height={30} />
+              </ListItemIcon>
               <ListItemText primary={label} />
             </ListItem>
           </Link>
@@ -49,13 +53,17 @@ function Sidebar() {
       <Divider />
       <List>
         <ListSubheader>Genres</ListSubheader>
-        {demoCategories.map(({ label, value }) => (
-          <Link key={value} className={classes.links} to="/">
-            <ListItem onClick={() => {}}>
-              {/* <ListItemIcon>
-                <img src={redLogo} className={classes.genreImages} height={30} />
-              </ListItemIcon> */}
-              <ListItemText primary={label} />
+        {isFetching ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress />
+          </Box>
+        ) : data.genres.map(({ name, id }) => (
+          <Link key={name} className={classes.links} to="/">
+            <ListItem onClick={() => dispatch(selectGenreOrCategory(id))}>
+              <ListItemIcon>
+                <img src={genreIcons[name.toLowerCase()]} className={classes.genreImages} height={30} />
+              </ListItemIcon>
+              <ListItemText primary={name} />
             </ListItem>
           </Link>
         ))}
