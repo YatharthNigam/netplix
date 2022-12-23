@@ -15,8 +15,8 @@ const categories = [
   { label: 'Upcoming', value: 'upcoming' },
 ];
 
-const redLogo = 'https://fontmeme.com/permalink/210930/8531c658a743debe1e1aa1a2fc82006e.png';
-const blueLogo = 'https://fontmeme.com/permalink/210930/6854ae5c7f76597cf8680e48a2c8a50a.png';
+const redLogo = 'https://fontmeme.com/temporary/71907343b558c4c8b32758f1a19bf3c7.png';
+const blueLogo = 'https://fontmeme.com/temporary/12e2b02a686cf012c79a87310919c908.png';
 
 function Sidebar() {
   const theme = useTheme();
@@ -32,7 +32,7 @@ function Sidebar() {
       <Link to="/" className={classes.imageLink}>
         <img
           className={classes.image}
-          src={theme.palette.mode === 'light' ? redLogo : blueLogo}
+          src={theme.palette.mode === 'light' ? blueLogo : redLogo}
           alt="NetPlix Logo"
         />
       </Link>
