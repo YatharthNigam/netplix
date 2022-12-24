@@ -18,14 +18,13 @@ const categories = [
 const redLogo = 'https://fontmeme.com/permalink/221224/a84522d7030a2925b180c292b967ab29.png';
 const blueLogo = 'https://fontmeme.com/permalink/221224/4476fbada6e4a794635302e9d7b28578.png';
 
-function Sidebar() {
+function Sidebar({ setMobileOpen }) {
   const theme = useTheme();
   const classes = useStyles();
   const { data, isFetching } = useGetGenresQuery();
   // use for sending data from component to redux store
   const dispatch = useDispatch();
-
-  console.log(data);
+  const { genreIdOrCategoryName } = useSelector((state) => state.currentGenreOrCategory);
 
   return (
     <>
