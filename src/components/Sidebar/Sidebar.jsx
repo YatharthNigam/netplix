@@ -15,8 +15,8 @@ const categories = [
   { label: 'Upcoming', value: 'upcoming' },
 ];
 
-const redLogo = 'https://fontmeme.com/temporary/71907343b558c4c8b32758f1a19bf3c7.png';
-const blueLogo = 'https://fontmeme.com/temporary/12e2b02a686cf012c79a87310919c908.png';
+const redLogo = 'https://fontmeme.com/permalink/221224/a84522d7030a2925b180c292b967ab29.png';
+const blueLogo = 'https://fontmeme.com/permalink/221224/4476fbada6e4a794635302e9d7b28578.png';
 
 function Sidebar() {
   const theme = useTheme();
