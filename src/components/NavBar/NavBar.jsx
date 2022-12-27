@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 // importing styles
 import { useTheme } from '@mui/material/styles';
 import useStyles from './styles';
-import { Sidebar } from '../index';
+import { Sidebar, Search } from '../index';
 
 function NavBar() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -41,7 +41,7 @@ function NavBar() {
           >
             {theme.palette.mode === 'dark' ? <Brightness7 /> : <Brightness4 />}
           </IconButton>
-          {!isMobile && 'Search...'}
+          {!isMobile && <Search />}
           <div>
             {!isAuthenticated ? (
               <Button color="inherit" onClick={() => {}}>
@@ -65,7 +65,7 @@ function NavBar() {
             )}
           </div>
           {/* if on  mobile device then show search in last */}
-          {isMobile && 'Search...'}
+          {isMobile && <Search />}
         </Toolbar>
       </AppBar>
 
